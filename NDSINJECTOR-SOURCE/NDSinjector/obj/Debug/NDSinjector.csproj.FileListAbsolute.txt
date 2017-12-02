@@ -1,0 +1,14 @@
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\bin\Debug\NDSinjector.exe.config
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\bin\Debug\NDSinjector.exe
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\bin\Debug\NDSinjector.pdb
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.csprojResolveAssemblyReference.cache
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.Form1.resources
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.Properties.Resources.resources
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.csproj.GenerateResource.Cache
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.exe
+c:\users\nico\documents\visual studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.pdb
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\NDSinjector\NDSinjector\bin\Debug\NDSinjector.exe.manifest
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\NDSinjector\NDSinjector\bin\Debug\NDSinjector.application
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.exe.manifest
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.application
+C:\Users\Nico\Documents\Visual Studio 2015\Projects\NDSinjector\NDSinjector\obj\Debug\NDSinjector.Form2.resources
