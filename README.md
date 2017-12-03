@@ -1,3 +1,3 @@
-## Welcome at the official Ultimate WiiU VC Injector site!
+## Welcome!
 
-This site is still under construction. You'll find general information about the Injectors here
+This site is still under construction. You'll find general information about the Injectors here.
