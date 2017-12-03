@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NDSinjector.exe" size="134072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NDSinjector.exe" size="136120">
       <assemblyIdentity name="NDSinjector" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kGAofanx8pGlfAp05Yv4R5aGcNyVFikpc2qu+BXIxIE=</dsig:DigestValue>
+        <dsig:DigestValue>tEbtrPFOF2MtnjH06rawBvhhURLIE9bMr8xQ0URQAgw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

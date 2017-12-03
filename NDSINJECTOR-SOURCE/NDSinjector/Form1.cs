@@ -158,6 +158,14 @@ namespace NDSinjector
             label24.Enabled = true;
             label28.Enabled = true;
             button21.Enabled = true;
+            label24.Enabled = true;
+            label25.Enabled = true;
+            label28.Enabled = true;
+            label24.Visible = true;
+            label25.Visible = true;
+            label28.Visible = true;
+            textBox5.Enabled = true;
+            textBox5.Visible = true;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -261,6 +269,14 @@ namespace NDSinjector
             label24.Visible = false;
             button21.Enabled = false;
             button21.Visible = false;
+            label24.Enabled = false;
+            label25.Enabled = false;
+            label28.Enabled = false;
+            label24.Visible = false;
+            label25.Visible = false;
+            label28.Visible = false;
+            textBox5.Enabled = false;
+            textBox5.Visible = false;
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -575,6 +591,7 @@ namespace NDSinjector
             label23.Visible = true;
             button20.Enabled = true;
             button20.Visible = true;
+
         }
 
         private void button20_Click(object sender, EventArgs e)
@@ -584,35 +601,82 @@ namespace NDSinjector
         //XMLWARIOWAREEU
         private void button21_Click(object sender, EventArgs e)
         {
-
-            string edit = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\EDIT\EditWWEU.bat");
-            Process pack = new Process();
-            pack.StartInfo.FileName = edit;
-            pack.StartInfo.CreateNoWindow = true;
-            pack.Start();
-            pack.WaitForExit();
-            int exitCode = pack.ExitCode;
-            pack.Close();
             string xmlFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\EDIT\meta.xml");
+            string Newloc = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareEU\meta\meta.xml");
+            string xmlFile2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\EDIT\app.xml");
+            string Newloc2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareEU\code\app.xml");
+            File.Move(Newloc, xmlFile);
+            File.Move(Newloc2, xmlFile2);
+            var random = new Random();
+            var ID = String.Format("{0:X4}", random.Next(0x10000));
             XmlDocument doc = new XmlDocument();
             doc.Load(xmlFile);
-
-            string newValue = textBox5.Text;
-
-            XmlNodeList list = doc.SelectNodes("//*[starts-with(name(), 'longname')]");
-            for (int i = 0; i < list.Count; i++)
-            {
-                Console.WriteLine(list[i].Name); // longname_it, longname_es, ...
-
-                 foreach (XmlNode n in list)
- {
-     n.Value = newValue; // Setting the value.
- }         
-                                                 
-            }
-
+            XmlNode node = doc.SelectSingleNode("menu/longname_ja");
+            XmlNode node2 = doc.SelectSingleNode("menu/longname_en");
+            XmlNode node3 = doc.SelectSingleNode("menu/longname_fr");
+            XmlNode node4 = doc.SelectSingleNode("menu/longname_de");
+            XmlNode node5 = doc.SelectSingleNode("menu/longname_it");
+            XmlNode node6 = doc.SelectSingleNode("menu/longname_es");
+            XmlNode node7 = doc.SelectSingleNode("menu/longname_zhs");
+            XmlNode node8 = doc.SelectSingleNode("menu/longname_ko");
+            XmlNode node9 = doc.SelectSingleNode("menu/longname_nl");
+            XmlNode node10 = doc.SelectSingleNode("menu/longname_pt");
+            XmlNode node11 = doc.SelectSingleNode("menu/longname_ru");
+            XmlNode node12 = doc.SelectSingleNode("menu/longname_zht");
+            XmlNode node13 = doc.SelectSingleNode("menu/product_code");
+            XmlNode node14 = doc.SelectSingleNode("menu/title_id");
+            node13.InnerText = "WUP-N-" + ID;
+            node14.InnerText = "0005000010" + ID + "00";
+            node.InnerText = textBox5.Text;
+            node2.InnerText = textBox5.Text;
+            node3.InnerText = textBox5.Text;
+            node4.InnerText = textBox5.Text;
+            node5.InnerText = textBox5.Text;
+            node6.InnerText = textBox5.Text;
+            node7.InnerText = textBox5.Text;
+            node8.InnerText = textBox5.Text;
+            node9.InnerText = textBox5.Text;
+            node10.InnerText = textBox5.Text;
+            node11.InnerText = textBox5.Text;
+            node12.InnerText = textBox5.Text;
+            XmlNode mode = doc.SelectSingleNode("menu/shortname_ja");
+            XmlNode mode2 = doc.SelectSingleNode("menu/shortname_en");
+            XmlNode mode3 = doc.SelectSingleNode("menu/shortname_fr");
+            XmlNode mode4 = doc.SelectSingleNode("menu/shortname_de");
+            XmlNode mode5 = doc.SelectSingleNode("menu/shortname_it");
+            XmlNode mode6 = doc.SelectSingleNode("menu/shortname_es");
+            XmlNode mode7 = doc.SelectSingleNode("menu/shortname_zhs");
+            XmlNode mode8 = doc.SelectSingleNode("menu/shortname_ko");
+            XmlNode mode9 = doc.SelectSingleNode("menu/shortname_nl");
+            XmlNode mode10 = doc.SelectSingleNode("menu/shortname_pt");
+            XmlNode mode11 = doc.SelectSingleNode("menu/shortname_ru");
+            XmlNode mode12 = doc.SelectSingleNode("menu/shortname_zht");
+            mode.InnerText = textBox5.Text;
+            mode2.InnerText = textBox5.Text;
+            mode3.InnerText = textBox5.Text;
+            mode4.InnerText = textBox5.Text;
+            mode5.InnerText = textBox5.Text;
+            mode6.InnerText = textBox5.Text;
+            mode7.InnerText = textBox5.Text;
+            mode8.InnerText = textBox5.Text;
+            mode9.InnerText = textBox5.Text;
+            mode10.InnerText = textBox5.Text;
+            mode11.InnerText = textBox5.Text;
+            mode12.InnerText = textBox5.Text;
             doc.Save(xmlFile);
-
+            File.Move(xmlFile, Newloc);
+            XmlDocument doc2 = new XmlDocument();
+            doc.Load(xmlFile2);
+            XmlNode n2ode = doc.SelectSingleNode("menu/title_id");
+            node14.InnerText = "0005000010" + ID + "00";
+            doc.Save(xmlFile2);
+            File.Move(xmlFile2, Newloc2);
+            label24.Enabled = false;
+            label25.Enabled = false;
+            label28.Enabled = false;
+            button21.Enabled = false;
+            textBox5.Enabled = false;
         }
     }
-}
+    }
+    

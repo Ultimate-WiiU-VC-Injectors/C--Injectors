@@ -671,19 +671,23 @@ namespace NDSinjector
             // 
             // textBox5
             // 
+            this.textBox5.Enabled = false;
             this.textBox5.Location = new System.Drawing.Point(637, 229);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 63;
+            this.textBox5.Visible = false;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
+            this.label25.Enabled = false;
             this.label25.Location = new System.Drawing.Point(656, 213);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(66, 13);
             this.label25.TabIndex = 64;
             this.label25.Text = "Game Name";
+            this.label25.Visible = false;
             // 
             // Form1
             // 
