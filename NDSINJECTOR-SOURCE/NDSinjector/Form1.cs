@@ -72,10 +72,25 @@ namespace NDSinjector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string batch = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WWEU.bat");
-            Process JNUSTOOL = new Process();
-            JNUSTOOL.StartInfo.FileName = batch;
-            JNUSTOOL.Start();
+            string cfg = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\config");
+            string TK = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\TOOLS\Storage\WWEUTK");
+            string ckeylocation = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\Storage\CKEY");
+            string ckey = File.ReadAllText(ckeylocation);
+            string word = "<ckey>";
+            if (File.ReadAllText(cfg).Contains(word))
+            {
+                MessageBox.Show("There is a match");
+                string text = File.ReadAllText(cfg);
+                text = text.Replace(word, textBox1.Text);
+                File.WriteAllText(cfg, text);
+            }
+            Directory.SetCurrentDirectory(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL"));
+            System.Diagnostics.Process clientProcess = new Process();
+            clientProcess.StartInfo.FileName = "java";
+            clientProcess.StartInfo.Arguments = "-jar JNUSTool.jar 00050000101a2000 " + textBox2.Text + " -file .*";
+            clientProcess.Start();
+            clientProcess.WaitForExit();
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             textBox2.Enabled = false;
             textBox1.Enabled = false;
             button1.Enabled = false;
@@ -213,10 +228,48 @@ namespace NDSinjector
 
         private void button7_Click(object sender, EventArgs e)
         {
-            string packing = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\WWEU.bat");
-            Process pack = new Process();
-            pack.StartInfo.FileName = packing;
-            pack.Start();
+            var oldpathmeta = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareEU\meta");
+            var oldpathcode = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareEU\code");
+            var oldpathcontent = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareEU\content");
+            var wwus = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareEU");
+            var newpathmeta = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input\meta");
+            var newpathcode = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input\code");
+            var newpathcontent = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input\content");
+
+            Directory.Move(oldpathcode, newpathcode);
+            Directory.Move(oldpathcontent, newpathcontent);
+            Directory.Move(oldpathmeta, newpathmeta);
+            Directory.Delete(wwus);
+            var input = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input");
+            var output = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\output");
+            var appname = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\NUSPacker.jar");
+            var atb = " -in " + input + " -out " + output + " -encryptKeyWith ";
+            string ckeylocation = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\Storage\CKEY");
+            string ckey = File.ReadAllText(ckeylocation);
+            string fullpath = appname + atb + ckey;
+            MessageBox.Show(fullpath);
+            var processInfo = new ProcessStartInfo("java.exe", "-jar " + appname + atb + ckey)
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false
+            };
+            Process proc;
+
+            if ((proc = Process.Start(processInfo)) == null)
+            {
+                throw new InvalidOperationException("??");
+            }
+
+            proc.WaitForExit();
+            int exitCode = proc.ExitCode;
+            proc.Close();
+            var packedinstall = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\Injected_VC_Game");
+            var endpath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\..\Injected_Games\Injected_VC_Game");
+            Directory.Move(output, packedinstall);
+            Directory.Move(packedinstall, endpath);
+            Directory.Delete(newpathcode);
+            Directory.Delete(newpathcontent);
+            Directory.Delete(newpathmeta);
             label1.Visible = false;
             label1.Enabled = false;
             label2.Enabled = false;
@@ -341,7 +394,7 @@ namespace NDSinjector
             string ckeycheck = "D7B0";
             string tklocation = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\Storage\WWUSTK");
             string tkey = File.ReadAllText(tklocation);
-            string tkeycheck = "1337";
+            string tkeycheck = "efaa";
             if (ckey.Contains(ckeycheck))
             {
                 textBox3.Text = ckey;
@@ -398,6 +451,16 @@ namespace NDSinjector
             label22.Enabled = true;
             button19.Enabled = true;
             button19.Visible = true;
+            label26.Enabled = true;
+            label27.Enabled = true;
+            label29.Enabled = true;
+            button22.Enabled = true;
+            textBox6.Enabled = true;
+            label26.Visible = true;
+            label27.Visible = true;
+            label29.Visible = true;
+            button22.Visible = true;
+            textBox6.Visible = true;
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -445,15 +508,29 @@ namespace NDSinjector
 
         private void button14_Click(object sender, EventArgs e)
         {
-            string batch = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WWUS.bat");
-            Process JNUSTOOL = new Process();
-            JNUSTOOL.StartInfo.FileName = batch;
-            JNUSTOOL.Start();
+            string cfg = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\config");
+            string TK = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\TOOLS\Storage\WWUSTK");
+            string ckeylocation = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\Storage\CKEY");
+            string ckey = File.ReadAllText(ckeylocation);
+            string word = "<ckey>";
+            if (File.ReadAllText(cfg).Contains(word))
+            {
+                MessageBox.Show("There is a match");
+                string text = File.ReadAllText(cfg);
+                text = text.Replace(word, textBox3.Text);
+                File.WriteAllText(cfg, text);
+            }
+            Directory.SetCurrentDirectory(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL"));
+            System.Diagnostics.Process clientProcess = new Process(); 
+            clientProcess.StartInfo.FileName = "java";
+            clientProcess.StartInfo.Arguments = "-jar JNUSTool.jar 00050000101a1f00 " + textBox4.Text +" -file .*";
+            clientProcess.Start();
+            clientProcess.WaitForExit();
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             label13.Enabled = false;
             label14.Enabled = false;
             button12.Enabled = false;
             button13.Enabled = false;
-            button14.Enabled = false;
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -543,10 +620,48 @@ namespace NDSinjector
 
         private void button19_Click(object sender, EventArgs e)
         {
-            string packing = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\WWUS.bat");
-            Process pack = new Process();
-            pack.StartInfo.FileName = packing;
-            pack.Start();
+            var oldpathmeta = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareUS\meta");
+            var oldpathcode = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareUS\code");
+            var oldpathcontent = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareUS\content");
+            var wwus = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareUS");
+            var newpathmeta = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input\meta");
+            var newpathcode = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input\code");
+            var newpathcontent = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input\content");
+            
+            Directory.Move(oldpathcode, newpathcode);
+            Directory.Move(oldpathcontent, newpathcontent);
+            Directory.Move(oldpathmeta, newpathmeta);
+            Directory.Delete(wwus);
+            var input = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\input");
+            var output = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\output");
+            var appname = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\NUSPacker.jar");
+            var atb = " -in " + input + " -out " + output + " -encryptKeyWith ";
+            string ckeylocation = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\Storage\CKEY");
+            string ckey = File.ReadAllText(ckeylocation);
+            string fullpath = appname + atb + ckey;
+            MessageBox.Show(fullpath);
+            var processInfo = new ProcessStartInfo("java.exe", "-jar " + appname + atb + ckey)
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false
+            };
+            Process proc;
+
+            if ((proc = Process.Start(processInfo)) == null)
+            {
+                throw new InvalidOperationException("??");
+            }
+
+            proc.WaitForExit();
+            int exitCode = proc.ExitCode;
+            proc.Close();
+            var packedinstall = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\NUSPACKER\Injected_VC_Game");
+            var endpath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\..\Injected_Games\Injected_VC_Game");
+            Directory.Move(output, packedinstall);
+            Directory.Move(packedinstall, endpath);
+            Directory.Delete(newpathcode);
+            Directory.Delete(newpathcontent);
+            Directory.Delete(newpathmeta);
             textBox3.Enabled = false;
             textBox3.Visible = false;
             textBox4.Enabled = false;
@@ -591,6 +706,11 @@ namespace NDSinjector
             label23.Visible = true;
             button20.Enabled = true;
             button20.Visible = true;
+            label26.Visible = false;
+            label27.Visible = false;
+            label29.Visible = false;
+            button22.Visible = false;
+            textBox6.Visible = false;
 
         }
 
@@ -676,6 +796,85 @@ namespace NDSinjector
             label28.Enabled = false;
             button21.Enabled = false;
             textBox5.Enabled = false;
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            string xmlFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\EDIT\meta.xml");
+            string Newloc = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareUS\meta\meta.xml");
+            string xmlFile2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\EDIT\app.xml");
+            string Newloc2 = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TOOLS\JNUSTOOL\WarioWareUS\code\app.xml");
+            File.Move(Newloc, xmlFile);
+            File.Move(Newloc2, xmlFile2);
+            var random = new Random();
+            var ID = String.Format("{0:X4}", random.Next(0x10000));
+            XmlDocument doc = new XmlDocument();
+            doc.Load(xmlFile);
+            XmlNode node = doc.SelectSingleNode("menu/longname_ja");
+            XmlNode node2 = doc.SelectSingleNode("menu/longname_en");
+            XmlNode node3 = doc.SelectSingleNode("menu/longname_fr");
+            XmlNode node4 = doc.SelectSingleNode("menu/longname_de");
+            XmlNode node5 = doc.SelectSingleNode("menu/longname_it");
+            XmlNode node6 = doc.SelectSingleNode("menu/longname_es");
+            XmlNode node7 = doc.SelectSingleNode("menu/longname_zhs");
+            XmlNode node8 = doc.SelectSingleNode("menu/longname_ko");
+            XmlNode node9 = doc.SelectSingleNode("menu/longname_nl");
+            XmlNode node10 = doc.SelectSingleNode("menu/longname_pt");
+            XmlNode node11 = doc.SelectSingleNode("menu/longname_ru");
+            XmlNode node12 = doc.SelectSingleNode("menu/longname_zht");
+            XmlNode node13 = doc.SelectSingleNode("menu/product_code");
+            XmlNode node14 = doc.SelectSingleNode("menu/title_id");
+            node13.InnerText = "WUP-N-" + ID;
+            node14.InnerText = "0005000010" + ID + "00";
+            node.InnerText = textBox6.Text;
+            node2.InnerText = textBox6.Text;
+            node3.InnerText = textBox6.Text;
+            node4.InnerText = textBox6.Text;
+            node5.InnerText = textBox6.Text;
+            node6.InnerText = textBox6.Text;
+            node7.InnerText = textBox6.Text;
+            node8.InnerText = textBox6.Text;
+            node9.InnerText = textBox6.Text;
+            node10.InnerText = textBox6.Text;
+            node11.InnerText = textBox6.Text;
+            node12.InnerText = textBox6.Text;
+            XmlNode mode = doc.SelectSingleNode("menu/shortname_ja");
+            XmlNode mode2 = doc.SelectSingleNode("menu/shortname_en");
+            XmlNode mode3 = doc.SelectSingleNode("menu/shortname_fr");
+            XmlNode mode4 = doc.SelectSingleNode("menu/shortname_de");
+            XmlNode mode5 = doc.SelectSingleNode("menu/shortname_it");
+            XmlNode mode6 = doc.SelectSingleNode("menu/shortname_es");
+            XmlNode mode7 = doc.SelectSingleNode("menu/shortname_zhs");
+            XmlNode mode8 = doc.SelectSingleNode("menu/shortname_ko");
+            XmlNode mode9 = doc.SelectSingleNode("menu/shortname_nl");
+            XmlNode mode10 = doc.SelectSingleNode("menu/shortname_pt");
+            XmlNode mode11 = doc.SelectSingleNode("menu/shortname_ru");
+            XmlNode mode12 = doc.SelectSingleNode("menu/shortname_zht");
+            mode.InnerText = textBox6.Text;
+            mode2.InnerText = textBox6.Text;
+            mode3.InnerText = textBox6.Text;
+            mode4.InnerText = textBox6.Text;
+            mode5.InnerText = textBox6.Text;
+            mode6.InnerText = textBox6.Text;
+            mode7.InnerText = textBox6.Text;
+            mode8.InnerText = textBox6.Text;
+            mode9.InnerText = textBox6.Text;
+            mode10.InnerText = textBox6.Text;
+            mode11.InnerText = textBox6.Text;
+            mode12.InnerText = textBox6.Text;
+            doc.Save(xmlFile);
+            File.Move(xmlFile, Newloc);
+            XmlDocument doc2 = new XmlDocument();
+            doc.Load(xmlFile2);
+            XmlNode n2ode = doc.SelectSingleNode("menu/title_id");
+            node14.InnerText = "0005000010" + ID + "00";
+            doc.Save(xmlFile2);
+            File.Move(xmlFile2, Newloc2);
+            label26.Enabled = false;
+            label27.Enabled = false;
+            label29.Enabled = false;
+            button22.Enabled = false;
+            textBox6.Enabled = false;
         }
     }
     }

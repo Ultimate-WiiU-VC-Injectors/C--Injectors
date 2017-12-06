@@ -85,6 +85,11 @@ namespace NDSinjector
             this.label28 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button22 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -689,11 +694,71 @@ namespace NDSinjector
             this.label25.Text = "Game Name";
             this.label25.Visible = false;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Enabled = false;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(647, 169);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(75, 20);
+            this.label26.TabIndex = 65;
+            this.label26.Text = ".xml Stuff";
+            this.label26.Visible = false;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Enabled = false;
+            this.label27.Location = new System.Drawing.Point(574, 189);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(227, 13);
+            this.label27.TabIndex = 66;
+            this.label27.Text = "Only do this after you changed the Bootimages";
+            this.label27.Visible = false;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Enabled = false;
+            this.label29.Location = new System.Drawing.Point(656, 213);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(66, 13);
+            this.label29.TabIndex = 67;
+            this.label29.Text = "Game Name";
+            this.label29.Visible = false;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Enabled = false;
+            this.textBox6.Location = new System.Drawing.Point(637, 229);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 20);
+            this.textBox6.TabIndex = 68;
+            this.textBox6.Visible = false;
+            // 
+            // button22
+            // 
+            this.button22.Enabled = false;
+            this.button22.Location = new System.Drawing.Point(647, 259);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 69;
+            this.button22.Text = "edit xml";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Visible = false;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 389);
+            this.Controls.Add(this.button22);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label28);
@@ -813,6 +878,11 @@ namespace NDSinjector
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button22;
     }
 }
 
