@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>SWITCH test</title>
+</head>
+<body>
+<script type="text/javascript" language="JavaScript">
+function checkWebKit() {
+    var result = /AppleWebKit\/([\d.]+)/.exec(navigator.userAgent);
+    if (result) {
+        return parseFloat(result[1]);
+    }
+    return null;
+}
+</script>
+</body>
+</html>
