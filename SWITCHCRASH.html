@@ -302,10 +302,13 @@
 			
 			function Test_ElementOverflow ()
 			{
+				if ( Warning2() )
+				{
 					x = document.createElement('div');
 					document.body.appendChild(x);
 					$(x).style('display', 'none');
 					_ElementOverflow();
+				}
 			}
 			
 			function _ElementOverflow ()
