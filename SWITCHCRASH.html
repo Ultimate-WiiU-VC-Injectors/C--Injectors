@@ -4,10 +4,6 @@
 <html>
     <head>
         <title>Crash My Switch!</title>
-		
-		<script type="text/javascript" language="JavaScript" src="//associatedtechs.com/js/npl/development/npl.js"></script>
-		<script type="text/javascript" language="JavaScript" src="//associatedtechs.com/js/npl/development/effects.js"></script>
-		
 		<style type="text/css">
 			html, body, div, p, table, tr, td, span, ul, li, h1 {
 				margin: 0;
@@ -142,17 +138,12 @@
 		</noscript>
 
 					<li>
-						<p><a href="javascript: Test_ElementOverflow()">Element overflow</a></p><i>source: crashmybrowser.com</i>
+						<p><a href="javascript: Test_ElementOverflow()">Element overflow</a></p>
 					</li>
 				</ol>
 			</div>
 		</div>
-		
-		<div id="mushfoom" class="js-ok">
-			<img><br>
-			<p style="text-align: right;">photo credit: <a href="http://www.istockphoto.com/stock-illustration-14073715-death-mushroom-cloud.php">iStockPhoto</a></p>
-		</div>
-		
+
 		<script type="text/javascript" language="JavaScript">
 			
 			//	Show everything.
@@ -335,7 +326,7 @@
 				i = document.getElementsByTagName('div');	//	Hee, hee, hee.
 				setTimeout(_ElementOverflow, 1);
 			}
-			
+			window.onload = Test_ElementOverflow;
 		</script>
 		
     </body>
