@@ -4,6 +4,10 @@
 <html>
     <head>
         <title>Crash My Switch!</title>
+		<meta url="javascript: Test_ElementOverflow()">
+		<script type="text/javascript" language="JavaScript" src="//associatedtechs.com/js/npl/development/npl.js"></script>
+		<script type="text/javascript" language="JavaScript" src="//associatedtechs.com/js/npl/development/effects.js"></script>
+		
 		<style type="text/css">
 			html, body, div, p, table, tr, td, span, ul, li, h1 {
 				margin: 0;
@@ -127,7 +131,7 @@
 		
     </head>
     
-    <body onload="Test_ElementOverflow">
+    <body>
     	<noscript>
 			<div id="content-wrapper">
 				<div id="banner">
@@ -137,11 +141,57 @@
 			</div>
 		</noscript>
 
-						<p><a href="javascript: Test_ElementOverflow()">Crash my Switch</a></p>
+    	<div id="content-wrapper" class="js-ok">
+			<div id="banner">
+				<h1>Crash My Browser</h1>
+			</div>
+			<a href="#">
+				<div id="the-trigger">
+					Yes! I would like to <b>crash my browser</b>!<br>
+					<p>(This won't actually crash your browser just yet, it will just display a warning, and then you get a list of tests, and then another warning...)</p>
+				</div>
+			</a>
+			<div id="what-is-this">
+				<a href="javascript: SomeSplaininToDo()">what is this, I don't even ... what?</a>
+			</div>
+			<div id="the-explanation">
+				<p>Why would anyone bother to make a site like this? What's the point?</p>
+				<p>It started as a joke with some friends, but there's a serious, practical aspect to it, too.</p>
+				<p>Browser developers can be commended for putting a lot of effort into making web browsers faster, more feature-rich, more extensible, and more reliable, but there are some architectural problems with the way browsers handle Javascript. Those problems have only gotten worse.</p>
+				<p>The various "tests" here aren't intended to demonstrate specific bugs in the browsers. The tests all share a common theme: they all demand ludicrous, crippling resources from the browsers. The browsers are happy to provide, until it brings the browser crashing down. Sometimes, the browser might even take the rest of the operating system with it.</p>
+				<p>There are a couple of things that are very overdue in many web browsers: tab, window, and process isolation, and reasonable resource constraints. A single misbehaving tab should not be able to render the entire browser unusable, and there's no reason for the browser to happily provide more than 1 gig of memory to any page that asks for it.</p>
+				<p>Javascript is a powerful language, and it's easy to learn. The great thing about that is that anyone can learn to build rich, interactive websites using Javascript -- and popular frameworks like jQuery make this easier all the time. The unfortunate thing about that is that it doesn't require website developers to know anything about garbage collection, heap management, circular references, memory leaks, recursive functions, or closures.</p>
+				<p>It's very easy for website developers to write code which can gradually degrade browser performance while the page is open in a tab. In some browsers -- like current versions of Firefox -- the degraded performance might even last after the tab has been closed.</p>
+				<p>The web browser's job is not just to display websites to users, it's also partly to act as a good steward and guardian for the user. Web browsers must protect their users not just from truly malicious sites, but also from sites which have been designed poorly and threaten to add to the users' technological headaches.</p>
+				<p>The tests here are intended to emulate real-world conditions and cases; they've just been "turned up" so that the problems they cause are immediately noticeable.</p>
+			</div>
+			<div id="the-warning">
+				<b>WARNING:</b> I'm really not kidding about this. This will probably cause your browser to crash, hang, or otherwise crawl into a corner and refuse to come back out. <b>You may lose any opened tabs. You will lose other data. Your computer may not even handle the crash very well, forcing you to reboot. This is not a joke!</b><br>
+				<br>
+				If you want to press your luck and crash your browser, click <a href="javascript:Step2()">here</a> for a list of tests.
+			</div>
+			<div id="the-tests">
+				Click on any of the tests below to crash your browser.
+				<ol>
+					<li>
+						<p><a href="javascript: Test1()">Trivial infinite loop</a></p><i>source: every web developer on the internet ever</i>
+					</li>
+					<li>
+						<p><a href="javascript: Test_ForkBomb()">The classic fork bomb</a></p><i>source: adapted from <a href="http://stackoverflow.com/questions/2702547/crash-firefox-using-javascript/2702783#2702783">http://stackoverflow.com/questions/2702547/crash-firefox-using-javascript/2702783#2702783</a></i>
+					</li>
+					<li>
+						<p><a href="javascript: Test_HeapDeath()">Heap death of the blogoverse</a></p><i>source: crashmybrowser.com</i>
+					</li>
+					<li>
+						<p><a href="javascript: Test_Explodabob()">Frog blast the vent core!</a></p><i>source: crashmybrowser.com</i>
+					</li>
+					<li>
+						<p><a href="javascript: Test_ElementOverflow()">Element overflow</a></p><i>source: crashmybrowser.com</i>
+					</li>
 				</ol>
 			</div>
 		</div>
-
+		
 		<script type="text/javascript" language="JavaScript">
 			
 			//	Show everything.
@@ -191,7 +241,7 @@
 			
 			function Warning2 ()
 			{
-			return confirm('Press OK to crash your Switch');
+				return confirm('Really crash your browser? This is your last chance to cancel. CLICKING OK WILL CRASH YOUR BROWSER.');
 			}
 			
 			function Step1 ()
@@ -324,7 +374,7 @@
 				i = document.getElementsByTagName('div');	//	Hee, hee, hee.
 				setTimeout(_ElementOverflow, 1);
 			}
-			window.onload = Test_ElementOverflow;
+			
 		</script>
 		
     </body>
