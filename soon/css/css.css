@@ -1,0 +1,48 @@
+.css {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border: none;
+    font: normal 16px/1 "Times New Roman", Times, serif;
+    color: black;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: -webkit-linear-gradient(-45deg, rgba(21,89,151,1) 0, rgba(21,150,90,1) 100%);
+    background: -moz-linear-gradient(135deg, rgba(21,89,151,1) 0, rgba(21,150,90,1) 100%);
+    background: linear-gradient(135deg, rgba(21,89,151,1) 0, rgba(21,150,90,1) 100%);
+    background-position: 50% 50%;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: auto auto;
+    background-size: auto auto;
+  }
+  html {
+  height: 100%;
+      background: -webkit-linear-gradient(-45deg, rgba(21,89,151,1) 0, rgba(21,150,90,1) 100%);
+    background: -moz-linear-gradient(135deg, rgba(21,89,151,1) 0, rgba(21,150,90,1) 100%);
+    background: linear-gradient(135deg, rgba(21,89,151,1) 0, rgba(21,150,90,1) 100%);
+  }
+.neon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0 20px;
+    font-size: 6em;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 20px #0400ff;
+
+}
+.neon:after{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    z-index: -1;
+    color: #0400ff;
+    filter: blur(15px)
+}
